@@ -120,12 +120,12 @@ public class Series {
 			throw new IllegalArgumentException("The participant number padding must be at least 1");
 		}
 		// create folder for participant
-		File participantFolder = new File(directory + String.format("%0" + padding + "d", participantNumber));
+		File participantFolder = new File(directory + "/" + String.format("%0" + padding + "d", participantNumber));
 		participantFolder.mkdir();
 		for (int i = 0; i < photos.size(); i++){
 			// save each photo with the name provided by the pattern
 			com.maxkasp.photoloader.util.File.copyFileUsingStream(photos.get(i).getImageFile().toString(), 
-					participantFolder + pattern.getFilenameForIndex(i, participantNumber));
+					participantFolder + "/" + pattern.getFilenameForIndex(i + 1, participantNumber));
 		}
 	}
 

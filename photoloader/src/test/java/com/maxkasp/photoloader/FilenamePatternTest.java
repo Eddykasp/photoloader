@@ -23,5 +23,11 @@ public class FilenamePatternTest {
 		FilenamePattern pattern = new FilenamePattern("part_$ii$_p");
 		assertEquals("part_02_p", pattern.getFilenameForIndex(2, 1));
 	}
+	
+	@Test
+	public void testParticpantPatternExpansion(){
+		FilenamePattern pattern = new FilenamePattern("$pp$");
+		assertEquals("03", pattern.getFilenameForIndex(1, 3));
+	}
 
 }

@@ -25,6 +25,8 @@ public class FilenamePattern {
 				
 				if (pattern.charAt(i + 1) == 'i'){
 					commands.add(new IndexCommand(count));
+				} else if (pattern.charAt(i + 1) == 'p'){
+					commands.add(new ParticipantNumberCommand(count));
 				}
 				
 				// shift i by count + 1 to move past end delimiting $
