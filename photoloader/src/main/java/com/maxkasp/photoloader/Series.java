@@ -102,31 +102,23 @@ public class Series {
 		return photos.get(topicNumber - 1);
 	}
 	
+	
 	/**
-	 * This method copies the photos from a series to a new location, renaming them according to a passed in pattern.
-	 * @param directory the target directory for the series folders
-	 * @param pattern the renaming pattern to be used for the files
-	 * @param padding determines how many leading zeros should be used in the participant number of the folder names
-	 * @throws IOException
+	 * Exports this series using a specified exporter
+	 * @param exporter instance of exporter to use for this operation
 	 */
-	public void saveSeriesToDisk(File directory, FilenamePattern pattern, int padding) throws IOException{
-		if(!directory.isDirectory()){
-			throw new IllegalArgumentException("The file object passed must be a directory");
-		}
-		if(!directory.exists()){
-			directory.mkdir();
-		}
-		if(padding < 1){
-			throw new IllegalArgumentException("The participant number padding must be at least 1");
-		}
-		// create folder for participant
-		File participantFolder = new File(directory + "/" + String.format("%0" + padding + "d", participantNumber));
-		participantFolder.mkdir();
-		for (int i = 0; i < photos.size(); i++){
-			// save each photo with the name provided by the pattern
-			com.maxkasp.photoloader.util.File.copyFileUsingStream(photos.get(i).getImageFile().toString(), 
-					participantFolder + "/" + pattern.getFilenameForIndex(i + 1, participantNumber));
-		}
+	public void exportSeries(SeriesExporter exporter) throws IOException{
+		exporter.export(this);
+	}
+
+	public int getLength() {
+		// TODO Auto-generated method stub
+		return this.length;
+	}
+
+	public int getParticipantNumber() {
+		// TODO Auto-generated method stub
+		return participantNumber;
 	}
 
 }

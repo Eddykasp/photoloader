@@ -98,7 +98,9 @@ public class SeriesTest {
 		try {
 			series.loadPhotos(TestConfiguration.testDirectory + "12-series");
 			FilenamePattern pattern = new FilenamePattern("test_$pp$_$ii$.jpg");
-			series.saveSeriesToDisk(new File (TestConfiguration.testDirectory + target), pattern, 3);
+			//series.saveSeriesToDisk(new File (TestConfiguration.testDirectory + target), pattern, 3);
+			SeriesExporter exporter = new SaveSeriesExporter(new File (TestConfiguration.testDirectory + target), pattern, 3);
+			series.exportSeries(exporter);
 		} catch (SeriesException | IOException e){
 			fail();
 		}
