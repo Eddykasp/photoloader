@@ -29,7 +29,7 @@ public class SaveSeriesExporter implements SeriesExporter {
 	public void export(Series series) throws IOException{
 		File participantFolder = new File(directory + "/" + String.format("%0" + padding + "d", series.getParticipantNumber()));
 		participantFolder.mkdir();
-		for (int i = 1; i < series.getLength(); i++){
+		for (int i = 1; i <= series.getLength(); i++){
 			// save each photo with the name provided by the pattern
 			com.maxkasp.photoloader.util.File.copyFileUsingStream(series.getPhotoByTopic(i).getImageFile().toString(), 
 					participantFolder + "/" + pattern.getFilenameForIndex(i, series.getParticipantNumber()));
